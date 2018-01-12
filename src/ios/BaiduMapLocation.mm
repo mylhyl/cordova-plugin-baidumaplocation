@@ -60,14 +60,6 @@
         BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
         reverseGeocodeSearchOption.reverseGeoPoint = pt;
         BOOL flag = [_geoCodeSerch reverseGeoCode:reverseGeocodeSearchOption];
-        if(!flag)        
-        {
-            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:_data];
-            [result setKeepCallbackAsBool:TRUE];
-            [_locService stopUserLocationService];
-            [self.commandDelegate sendPluginResult:result callbackId:_execCommand.callbackId];
-            _execCommand = nil;
-        }
     }
 }
 
@@ -84,6 +76,7 @@
          NSString* city = component.city;
          NSString* district = component.district;
          NSString* streetName = component.streetName;
+         NSString* province = component.province;
          NSString* addr = result.address;
          NSString* sematicDescription = result.sematicDescription;
  
@@ -93,6 +86,7 @@
         [_data setValue:city forKey:@"city"];
         [_data setValue:district forKey:@"district"];
         [_data setValue:streetName forKey:@"street"];
+        [_data setValue:province forKey:@"province"];
         [_data setValue:addr forKey:@"addr"];
         [_data setValue:sematicDescription forKey:@"locationDescribe"];
 
@@ -101,7 +95,12 @@
         [_locService stopUserLocationService];
         [self.commandDelegate sendPluginResult:result callbackId:_execCommand.callbackId];
         _execCommand = nil;
-    }
+    }else if(error == BMK_SEARCH_PERMISSION_UNFINISHED){
+		    NSDictionary *plistDic = [[NSBundle mainBundle] infoDictionary];
+			NSString* IOS_KEY = [[plistDic objectForKey:@"BaiduMapLocation"] objectForKey:@"IOS_KEY"];
+    
+			[[[BMKMapManager alloc] init] start:IOS_KEY generalDelegate:nil];
+	}
 }
 
 @end
