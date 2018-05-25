@@ -69,7 +69,7 @@ public class BaiduMapLocation extends CordovaPlugin {
                 json.put("district", location.getDistrict());
                 json.put("street", location.getStreet());
                 json.put("addr", location.getAddrStr());
-
+                json.put("province", location.getProvince());
 
                 json.put("userIndoorState", location.getUserIndoorState());
                 json.put("direction", location.getDirection());
@@ -99,10 +99,6 @@ public class BaiduMapLocation extends CordovaPlugin {
             }
         }
 
-
-        @Override
-        public void onConnectHotSpotMessage(String s, int i) {
-        }
     };
 
     /**

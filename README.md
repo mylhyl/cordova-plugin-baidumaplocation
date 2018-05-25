@@ -1,7 +1,10 @@
-# 百度地图定位Cordova插件，支持Android，IOS
+# 百度地图定位Cordova插件，支持Android，IOS，ionic 1x 2x 均可使用
 
+### UPDATE:
+* v4.0.1 优化了ionic3x的兼容性，升级对应百度定位依赖库（v7.5@Android）
+* v3.2.0 升级对应百度定位依赖库（v7.2@Android,v3.3.4@IOS）
 
-### 可以在此地址查看[example](https://github.com/aruis/testbmap-cordova-ionic)
+### 可以在此地址查看[ionic3_example](https://github.com/aruis/testbmap-cordova-ionic3)
 
 __致谢: 本插件Android开发主要参考 [cordova-qdc-baidu-location](https://github.com/liangzhenghui/cordova-qdc-baidu-location),感谢[liangzhenghui](https://github.com/liangzhenghui)；IOS开发主要参考[cordova-plugin-bdlocation](https://github.com/wilhantian/cordova-plugin-bdlocation)，感谢[wilhantian](https://github.com/wilhantian)__
 
@@ -20,7 +23,7 @@ __Android 版原作者[mrwutong](https://github.com/mrwutong)的话__
 >__此插件就这么诞生了__
 
 #### 零，版本
-基于百度地图Android版定位SDK（v7.1）以及百度地图IOS SDK （v3.2.1）
+基于百度地图Android版定位SDK（v7.2）以及百度地图IOS SDK （v3.3.4）
 
 #### 一，申请Android及IOS版密钥
 [申请密钥Android定位SDK](http://developer.baidu.com/map/index.php?title=android-locsdk/guide/key)
@@ -71,10 +74,19 @@ baidumap_location.getCurrentPosition(function (result) {
     //--------IOS 独享 end
 }
 ```
-具体字段内容请参照：
->[Android版 BDLocation v7.1](http://wiki.lbsyun.baidu.com/cms/androidloc/doc/v7.1/index.html)
 
->[IOS版 BMKUserLocation](http://wiki.lbsyun.baidu.com/cms/iossdk/doc/v3_2_0/html/interface_b_m_k_user_location.html#aba4b76e55f4605c5554fe16aca1b4fbf) 
+
+具体可参考如下截图
+
+
+![Android Screenshot](https://github.com/aruis/cordova-plugin-baidumaplocation/raw/master/android.jpg)
+![IOS Screenshot](https://github.com/aruis/cordova-plugin-baidumaplocation/raw/master/ios.PNG)
+
+
+具体字段内容请参照：
+>[Android版 BDLocation v7.2](http://wiki.lbsyun.baidu.com/cms/androidloc/doc/v7.2/index.html)
+
+>[IOS版 BMKUserLocation v3.3.4](http://wiki.lbsyun.baidu.com/cms/iossdk/doc/v3_3_4/html/interface_b_m_k_user_location.html#aba4b76e55f4605c5554fe16aca1b4fbf) 
 
 如果Android版获取到的信息是：
 
@@ -94,10 +106,7 @@ baidumap_location.getCurrentPosition(function (result) {
 
 ```xml
 <service android:enabled="true" android:name="com.baidu.location.f" android:process=":remote">
-          <intent-filter>
-              <action android:name="com.baidu.location.service_v2.2" />
-          </intent-filter>
-      </service>
+</service>
 <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="abcdefghijklmn" />
 ```
 
@@ -114,3 +123,4 @@ cordova plugin ls
 ```shell
 cordova plugin rm cordova-plugin-baidumaplocation
 ```
+#### 至ionic3用户，如何在ionic3项目中使用非ionic维护的cordova插件，可以参考：[https://stackoverflow.com/questions/37942202/using-a-third-party-cordova-plugin-in-ionic-2-with-typescript](https://stackoverflow.com/questions/37942202/using-a-third-party-cordova-plugin-in-ionic-2-with-typescript)
